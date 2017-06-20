@@ -1,4 +1,5 @@
 #include "wfileio.h"
+#include "utf8_file_dir.h"
 
 #include <sstream>
 #include <fstream>
@@ -38,4 +39,14 @@ bool writeFile(string filename, string fileContent)
 		return false;
 	of << fileContent;
 	return true;
+}
+
+string getCurrentDirectory()
+{
+	char* strPath = new char[512];
+	CubicleSoft::UTF8::Dir::Getcwd(strPath, 512);
+
+	string path(strPath);
+	delete[] strPath;
+	return path;
 }
