@@ -8,36 +8,36 @@
 namespace RDI
 {
 
-std::wstring readWFile(string filename)
+wstring readWFile(string filename)
 {
-	std::wifstream wif(filename.c_str());
-	wif.imbue(std::locale(wif.getloc(), new std::codecvt_utf8<wchar_t>));
-	std::wstringstream wss;
+	wifstream wif(filename.c_str());
+	wif.imbue(std::locale(wif.getloc(), new codecvt_utf8<wchar_t>));
+	wstringstream wss;
 	wss << wif.rdbuf();
 	return wss.str();
 }
 
 bool writeWFile(string filename, wstring fileContent)
 {
-	std::wofstream wof(filename.c_str());
+	wofstream wof(filename.c_str());
 	if(!wof.is_open())
 		return false;
-	wof.imbue(std::locale(wof.getloc(), new std::codecvt_utf8<wchar_t>));
+	wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
 	wof << fileContent;
 	return true;
 }
 
-std::string readFile(string filename)
+string readFile(string filename)
 {
-	std::ifstream stream(filename.c_str());
-	std::stringstream ss;
+	ifstream stream(filename.c_str());
+	stringstream ss;
 	ss << stream.rdbuf();
 	return ss.str();
 }
 
 bool writeFile(string filename, string fileContent)
 {
-	std::ofstream of(filename.c_str());
+	ofstream of(filename.c_str());
 	if(!of.is_open())
 		return false;
 	of << fileContent;
@@ -52,6 +52,60 @@ string getCurrentDirectory()
 	string path(strPath);
 	delete[] strPath;
 	return path;
+}
+
+vector<wstring> readLinesWFile(string filename)
+{
+	wifstream wif(filename.c_str());
+	wif.imbue(std::locale(wif.getloc(), new codecvt_utf8<wchar_t>));
+	wstringstream wss;
+	wss << wif.rdbuf();
+
+	wstring tmp;
+	vector<wstring> lines;
+	while (wss >> tmp)
+		lines.push_back(tmp);
+
+	return lines;
+}
+
+bool writeLinesWFile(string filename, vector<wstring> linesToWrite)
+{
+	wofstream wof(filename.c_str());
+	if(!wof.is_open())
+		return false;
+	wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
+
+	for (wstring line : linesToWrite)
+		wof << line << endl;
+
+	return true;
+}
+
+vector<string> readLinesFile(string filename)
+{
+	ifstream stream(filename.c_str());
+	stringstream ss;
+	ss << stream.rdbuf();
+
+	string tmp;
+	vector<string> lines;
+	while (ss >> tmp)
+		lines.push_back(tmp);
+
+	return lines;
+}
+
+bool writeLinesFile(string filename, vector<string> linesToWrite)
+{
+	ofstream of(filename.c_str());
+	if(!of.is_open())
+		return false;
+
+	for (string line : linesToWrite)
+		of << line << endl;
+
+	return true;
 }
 
 } //namespace
