@@ -22,3 +22,20 @@ bool writeWFile(string filename, wstring fileContent)
 	wof << fileContent;
 	return true;
 }
+
+std::string readFile(string filename)
+{
+	std::ifstream stream(filename.c_str());
+	std::stringstream ss;
+	ss << stream.rdbuf();
+	return ss.str();
+}
+
+bool writeFile(string filename, string fileContent)
+{
+	std::ofstream of(filename.c_str());
+	if(!of.is_open())
+		return false;
+	of << fileContent;
+	return true;
+}
