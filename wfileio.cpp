@@ -5,6 +5,9 @@
 #include <fstream>
 #include <codecvt>
 
+namespace RDI
+{
+
 std::wstring readWFile(string filename)
 {
 	std::wifstream wif(filename.c_str());
@@ -50,3 +53,5 @@ string getCurrentDirectory()
 	delete[] strPath;
 	return path;
 }
+
+} //namespace
