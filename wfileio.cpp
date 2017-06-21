@@ -63,7 +63,7 @@ vector<wstring> readLinesWFile(string filename)
 
 	wstring tmp;
 	vector<wstring> lines;
-	while (wss >> tmp)
+	while (getline(wss, tmp))
 		lines.push_back(tmp);
 
 	return lines;
@@ -90,7 +90,7 @@ vector<string> readLinesFile(string filename)
 
 	string tmp;
 	vector<string> lines;
-	while (ss >> tmp)
+	while (getline(ss, tmp))
 		lines.push_back(tmp);
 
 	return lines;
@@ -105,6 +105,46 @@ bool writeLinesFile(string filename, vector<string> linesToWrite)
 	for (string line : linesToWrite)
 		of << line << endl;
 
+	return true;
+}
+
+vector<string> getDirectoryContent(string path)
+{
+	DIR *dir;
+	struct dirent *ent;
+	vector<string> directoryContent;
+
+	if (dir = opendir (path.c_str()))
+	{
+		while ((ent = readdir (dir)) != NULL)
+		{
+			string fileName = ent->d_name;
+			if(fileName != "." && fileName != "..")
+				directoryContent.push_back(fileName);
+		}
+	}
+
+	return directoryContent;
+}
+
+bool appendToWFile(string filename, wstring content)
+{
+	wofstream wof;
+	wof.open(filename.c_str(), std::ios_base::app);
+	if(!wof.is_open())
+		return false;
+	wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
+	wof << content;
+	return true;
+}
+
+bool appendToFile(string filename, string content)
+{
+	ofstream of;
+	of.open(filename.c_str(), std::ios_base::app);
+	if(!of.is_open())
+		return false;
+	of << content;
 	return true;
 }
 
