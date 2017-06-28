@@ -21,21 +21,23 @@ using namespace std;
 
 extern "C++"
 {
-namespace RDI
-{
-wstring readWFile(string filename);
-vector<wstring> readLinesWFile(string filename);
-bool writeWFile(string filename, wstring fileContent);
-bool appendToWFile(string filename, wstring content);
-bool writeLinesWFile(string filename, vector<wstring> linesToWrite);
-string readFile(string filename);
-vector<string> readLinesFile(string filename);
-bool writeFile(string filename, string fileContent);
-bool appendToFile(string filename, string content);
-bool writeLinesFile(string filename, vector<string> linesToWrite);
-string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
-vector<string> getDirectoryContent(string path);
-}
+	namespace RDI
+	{
+		wstring readWFile(string filename);
+		vector<wstring> readLinesWFile(string filename);
+		bool writeWFile(string filename, wstring fileContent);
+		bool appendToWFile(string filename, wstring content);
+		bool writeLinesWFile(string filename, vector<wstring> linesToWrite);
+		string readFile(string filename);
+		vector<string> readLinesFile(string filename);
+		bool writeFile(string filename, string fileContent);
+		bool appendToFile(string filename, string content);
+		bool writeLinesFile(string filename, vector<string> linesToWrite);
+		string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
+		vector<string> getDirectoryContent(string path);
+		bool createDirectory(string path);
+		bool deleteDirectory(string path);
+	}
 } // namespace
 
 #endif // WFILEIO_H

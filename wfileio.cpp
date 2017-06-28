@@ -148,4 +148,14 @@ bool appendToFile(string filename, string content)
 	return true;
 }
 
+bool createDirectory(string path)
+{
+	return CubicleSoft::UTF8::Dir::Mkdir(path.c_str());
+}
+
+bool deleteDirectory(string path)
+{
+	return CubicleSoft::UTF8::Dir::Rmdir(path.c_str(), true);
+}
+
 } //namespace
