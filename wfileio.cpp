@@ -158,4 +158,9 @@ bool deleteDirectory(string path)
 	return CubicleSoft::UTF8::Dir::Rmdir(path.c_str(), true);
 }
 
+bool deleteFile(string filename)
+{
+	return CubicleSoft::UTF8::File::Delete(filename.c_str());
+}
+
 } //namespace

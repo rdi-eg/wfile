@@ -33,6 +33,7 @@ extern "C++"
 		bool writeFile(string filename, string fileContent);
 		bool appendToFile(string filename, string content);
 		bool writeLinesFile(string filename, vector<string> linesToWrite);
+		bool deleteFile(string filename);
 		string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
 		vector<string> getDirectoryContent(string path);
 		bool createDirectory(string path);
