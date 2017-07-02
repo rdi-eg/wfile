@@ -4,6 +4,8 @@
 #include <sstream>
 #include <fstream>
 #include <codecvt>
+#include <utility>
+#include <assert.h>
 
 namespace RDI
 {
@@ -51,7 +53,7 @@ string getCurrentDirectory()
 
 	string path(strPath);
 	delete[] strPath;
-	return path;
+	return path + "/";
 }
 
 vector<wstring> readLinesWFile(string filename)
@@ -148,19 +150,63 @@ bool appendToFile(string filename, string content)
 	return true;
 }
 
+std::vector<std::string> explode(std::string const & s, char delim)
+{
+	std::vector<std::string> result;
+	std::istringstream iss(s);
+
+	for (std::string token; std::getline(iss, token, delim); )
+	{
+		result.push_back(std::move(token));
+	}
+
+	return result;
+}
+
+string absolutePath(string path)
+{
+	path = getCurrentDirectory() + path;
+	char* absolutePath = new char[8129];
+	assert(CubicleSoft::UTF8::File::Realpath(absolutePath, 8129, path.c_str()));
+	return string(absolutePath);
+}
+
+pair<string, string> splitPathAndFilename(string path)
+{
+	vector<string> pathExploded = explode(path, '/');
+	string filename = pathExploded.back();
+	pathExploded.pop_back();
+	string restOfPath = "";
+
+	for (string dir : pathExploded)
+		restOfPath += dir + "/";
+
+	pair<string, string> pathAndFilename;
+	pathAndFilename.first = restOfPath;
+	pathAndFilename.second = filename;
+
+	return pathAndFilename;
+}
+
 bool createDirectory(string path)
 {
+	pair<string, string> pathAndFilename = splitPathAndFilename(path);
+
+	path = absolutePath(pathAndFilename.first) + "/";
+	path += pathAndFilename.second;
 	return CubicleSoft::UTF8::Dir::Mkdir(path.c_str());
 }
 
 bool deleteDirectory(string path)
 {
+	path = absolutePath(path);
 	return CubicleSoft::UTF8::Dir::Rmdir(path.c_str(), true);
 }
 
-bool deleteFile(string filename)
+bool deleteFile(string path)
 {
-	return CubicleSoft::UTF8::File::Delete(filename.c_str());
+	path = absolutePath(path);
+	return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
 
 } //namespace
