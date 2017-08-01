@@ -6,6 +6,7 @@
 #include <codecvt>
 #include <utility>
 #include <assert.h>
+#include <algorithm>
 
 namespace RDI
 {
@@ -125,6 +126,8 @@ vector<string> getDirectoryContent(string path)
 				directoryContent.push_back(fileName);
 		}
 	}
+
+	std::sort(directoryContent.begin(), directoryContent.end());
 
 	return directoryContent;
 }
