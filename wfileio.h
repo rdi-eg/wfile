@@ -17,28 +17,26 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 extern "C++"
 {
 	namespace RDI
 	{
-		wstring readWFile(string filename);
-		vector<wstring> readLinesWFile(string filename);
-		bool writeWFile(string filename, wstring fileContent);
-		bool appendToWFile(string filename, wstring content);
-		bool writeLinesWFile(string filename, vector<wstring> linesToWrite);
-		string readFile(string filename);
-		vector<string> readLinesFile(string filename);
-		bool writeFile(string filename, string fileContent);
-		bool appendToFile(string filename, string content);
-		bool writeLinesFile(string filename, vector<string> linesToWrite);
-		bool deleteFile(string path);
-		string absolutePath(string path);
-		string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
-		vector<string> getDirectoryContent(string path);
-		bool createDirectory(string path);
-		bool deleteDirectory(string path);
+		std::wstring readWFile(std::string filename);
+		std::vector<std::wstring> readLinesWFile(std::string filename);
+		bool writeWFile(std::string filename, std::wstring fileContent);
+		bool appendToWFile(std::string filename, std::wstring content);
+		bool writeLinesWFile(std::string filename, std::vector<std::wstring> linesToWrite);
+		std::string readFile(std::string filename);
+		std::vector<std::string> readLinesFile(std::string filename);
+		bool writeFile(std::string filename, std::string fileContent);
+		bool appendToFile(std::string filename, std::string content);
+		bool writeLinesFile(std::string filename, std::vector<std::string> linesToWrite);
+		bool deleteFile(std::string path);
+		std::string absolutePath(std::string path);
+		std::string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
+		std::vector<std::string> getDirectoryContent(std::string path);
+		bool createDirectory(std::string path);
+		bool deleteDirectory(std::string path);
 	}
 } // namespace
 

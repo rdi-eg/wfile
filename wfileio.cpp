@@ -7,6 +7,9 @@
 #include <utility>
 #include <assert.h>
 #include <algorithm>
+#include <memory>
+
+using namespace std;
 
 namespace RDI
 {
@@ -14,7 +17,7 @@ namespace RDI
 wstring readWFile(string filename)
 {
 	wifstream wif(filename.c_str());
-	wif.imbue(std::locale(wif.getloc(), new codecvt_utf8<wchar_t>));
+	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
 	wstringstream wss;
 	wss << wif.rdbuf();
 	return wss.str();
@@ -60,7 +63,7 @@ string getCurrentDirectory()
 vector<wstring> readLinesWFile(string filename)
 {
 	wifstream wif(filename.c_str());
-	wif.imbue(std::locale(wif.getloc(), new codecvt_utf8<wchar_t>));
+	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
 	wstringstream wss;
 	wss << wif.rdbuf();
 
@@ -113,11 +116,11 @@ bool writeLinesFile(string filename, vector<string> linesToWrite)
 
 vector<string> getDirectoryContent(string path)
 {
-	DIR *dir;
+	DIR* dir = opendir (path.c_str());
 	struct dirent *ent;
 	vector<string> directoryContent;
 
-	if (dir = opendir (path.c_str()))
+	if (dir)
 	{
 		while ((ent = readdir (dir)) != NULL)
 		{
@@ -127,7 +130,8 @@ vector<string> getDirectoryContent(string path)
 		}
 	}
 
-	std::sort(directoryContent.begin(), directoryContent.end());
+	closedir(dir);
+	sort(directoryContent.begin(), directoryContent.end());
 
 	return directoryContent;
 }
@@ -135,7 +139,7 @@ vector<string> getDirectoryContent(string path)
 bool appendToWFile(string filename, wstring content)
 {
 	wofstream wof;
-	wof.open(filename.c_str(), std::ios_base::app);
+	wof.open(filename.c_str(), ios_base::app);
 	if(!wof.is_open())
 		return false;
 	wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
@@ -146,21 +150,21 @@ bool appendToWFile(string filename, wstring content)
 bool appendToFile(string filename, string content)
 {
 	ofstream of;
-	of.open(filename.c_str(), std::ios_base::app);
+	of.open(filename.c_str(), ios_base::app);
 	if(!of.is_open())
 		return false;
 	of << content;
 	return true;
 }
 
-std::vector<std::string> explode(std::string const & s, char delim)
+vector<string> explode(string const & s, char delim)
 {
-	std::vector<std::string> result;
-	std::istringstream iss(s);
+	vector<string> result;
+	istringstream iss(s);
 
-	for (std::string token; std::getline(iss, token, delim); )
+	for (string token; getline(iss, token, delim); )
 	{
-		result.push_back(std::move(token));
+		result.push_back(move(token));
 	}
 
 	return result;
@@ -169,9 +173,9 @@ std::vector<std::string> explode(std::string const & s, char delim)
 string absolutePath(string path)
 {
 	path = getCurrentDirectory() + path;
-	char* absolutePath = new char[8129];
-	assert(CubicleSoft::UTF8::File::Realpath(absolutePath, 8129, path.c_str()));
-	return string(absolutePath);
+	unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
+	assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
+	return string(absolutePath.get());
 }
 
 pair<string, string> splitPathAndFilename(string path)
