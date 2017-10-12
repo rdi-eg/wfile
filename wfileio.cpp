@@ -1,5 +1,5 @@
 #include "rdi_wfileio.h"
-#include "rdi_utf8_file_dir.h"
+#include "utf8_file_dir.h"
 
 #include <sstream>
 #include <fstream>

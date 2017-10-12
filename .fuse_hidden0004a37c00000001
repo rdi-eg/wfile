@@ -3,7 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "utf8_file_dir.h"
+#include "rdi_utf8_file_dir.h"
 
 namespace CubicleSoft
 {

@@ -8,7 +8,7 @@
 	#define _LARGEFILE64_SOURCE
 #endif
 
-#include "rdi_utf8_util.h"
+#include "utf8_util.h"
 
 #include <cstdio>
 #include <cstring>
