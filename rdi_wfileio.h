@@ -23,22 +23,22 @@ extern "C++"
 {
 	namespace RDI
 	{
-		std::wstring readWFile(const std::string &filename);
-		std::vector<std::wstring> readLinesWFile(const std::string &filename);
-		bool writeWFile(const std::string &filename, const std::wstring &fileContent);
-		bool appendToWFile(const std::string &filename, const std::wstring &content);
-		bool writeLinesWFile(const std::string& filename, const std::vector<std::wstring>& linesToWrite);
-		std::string readFile(const std::string& filename);
-		std::vector<std::string> readLinesFile(const std::string& filename);
-		bool writeFile(const std::string& filename, const std::string& fileContent);
-		bool appendToFile(const std::string& filename, const std::string& content);
-		bool writeLinesFile(const std::string& filename, const std::vector<std::string>& linesToWrite);
-		bool deleteFile(std::string path);
-		std::string absolutePath(std::string path);
-		std::string getCurrentDirectory(); // returns the location of the binary ex "/home/rdi/bin"
-		std::vector<std::string> getDirectoryContent(const std::string& path);
-		bool createDirectory(std::string path);
-		bool deleteDirectory(std::string path);
+		std::wstring read_wfile(const std::string &filename);
+		std::vector<std::wstring> read_wfile_lines(const std::string &filename);
+		bool write_wfile(const std::string &filename, const std::wstring &fileContent);
+		bool append_to_wfile(const std::string &filename, const std::wstring &content);
+		bool write_wfile_lines(const std::string& filename, const std::vector<std::wstring>& linesToWrite);
+		std::string read_file(const std::string& filename);
+		std::vector<std::string> read_file_lines(const std::string& filename);
+		bool write_file(const std::string& filename, const std::string& fileContent);
+		bool append_to_file(const std::string& filename, const std::string& content);
+		bool write_file_lines(const std::string& filename, const std::vector<std::string>& linesToWrite);
+		bool delete_file(std::string path);
+		std::string absolute_path(std::string path);
+		std::string get_current_directory(); // returns the location of the binary ex "/home/rdi/bin"
+		std::vector<std::string> get_directory_content(const std::string& path);
+		bool create_directory(std::string path);
+		bool delete_directory(std::string path);
 	}
 } // namespace
 

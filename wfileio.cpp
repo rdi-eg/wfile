@@ -14,7 +14,7 @@ using namespace std;
 namespace RDI
 {
 
-wstring readWFile(const string& filename)
+wstring read_wfile(const string& filename)
 {
 	wifstream wif(filename.c_str());
 	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -23,7 +23,7 @@ wstring readWFile(const string& filename)
 	return wss.str();
 }
 
-bool writeWFile(const string& filename, const wstring& fileContent)
+bool write_wfile(const string& filename, const wstring& fileContent)
 {
 	wofstream wof(filename.c_str());
 	if(!wof.is_open())
@@ -33,7 +33,7 @@ bool writeWFile(const string& filename, const wstring& fileContent)
 	return true;
 }
 
-string readFile(const string &filename)
+string read_file(const string &filename)
 {
 	ifstream stream(filename.c_str());
 	stringstream ss;
@@ -41,7 +41,7 @@ string readFile(const string &filename)
 	return ss.str();
 }
 
-bool writeFile(const string &filename, const string &fileContent)
+bool write_file(const string &filename, const string &fileContent)
 {
 	ofstream of(filename.c_str());
 	if(!of.is_open())
@@ -50,7 +50,7 @@ bool writeFile(const string &filename, const string &fileContent)
 	return true;
 }
 
-string getCurrentDirectory()
+string get_current_directory()
 {
 	char* strPath = new char[512];
 	CubicleSoft::UTF8::Dir::Getcwd(strPath, 512);
@@ -60,7 +60,7 @@ string getCurrentDirectory()
 	return path + "/";
 }
 
-vector<wstring> readLinesWFile(const string &filename)
+vector<wstring> read_wfile_lines(const string &filename)
 {
 	wifstream wif(filename.c_str());
 	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -75,7 +75,7 @@ vector<wstring> readLinesWFile(const string &filename)
 	return lines;
 }
 
-bool writeLinesWFile(const string &filename, const vector<wstring> &linesToWrite)
+bool write_wfile_lines(const string &filename, const vector<wstring> &linesToWrite)
 {
 	wofstream wof(filename.c_str());
 	if(!wof.is_open())
@@ -88,7 +88,7 @@ bool writeLinesWFile(const string &filename, const vector<wstring> &linesToWrite
 	return true;
 }
 
-vector<string> readLinesFile(const string &filename)
+vector<string> read_file_lines(const string &filename)
 {
 	ifstream stream(filename.c_str());
 	stringstream ss;
@@ -102,7 +102,7 @@ vector<string> readLinesFile(const string &filename)
 	return lines;
 }
 
-bool writeLinesFile(const string &filename, const vector<string> &linesToWrite)
+bool write_file_lines(const string &filename, const vector<string> &linesToWrite)
 {
 	ofstream of(filename.c_str());
 	if(!of.is_open())
@@ -114,7 +114,7 @@ bool writeLinesFile(const string &filename, const vector<string> &linesToWrite)
 	return true;
 }
 
-vector<string> getDirectoryContent(const string &path)
+vector<string> get_directory_content(const string &path)
 {
 	DIR* dir = opendir (path.c_str());
 	struct dirent *ent;
@@ -136,7 +136,7 @@ vector<string> getDirectoryContent(const string &path)
 	return directoryContent;
 }
 
-bool appendToWFile(const string& filename, const wstring& content)
+bool append_to_wfile(const string& filename, const wstring& content)
 {
 	wofstream wof;
 	wof.open(filename.c_str(), ios_base::app);
@@ -147,7 +147,7 @@ bool appendToWFile(const string& filename, const wstring& content)
 	return true;
 }
 
-bool appendToFile(const string &filename, const string &content)
+bool append_to_file(const string &filename, const string &content)
 {
 	ofstream of;
 	of.open(filename.c_str(), ios_base::app);
@@ -170,9 +170,9 @@ vector<string> explode(string const & s, char delim)
 	return result;
 }
 
-string absolutePath(string path)
+string absolute_path(string path)
 {
-	path = getCurrentDirectory() + path;
+	path = get_current_directory() + path;
 	unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
 	assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
 	return string(absolutePath.get());
@@ -195,24 +195,24 @@ pair<string, string> splitPathAndFilename(string path)
 	return pathAndFilename;
 }
 
-bool createDirectory(string path)
+bool create_directory(string path)
 {
 	pair<string, string> pathAndFilename = splitPathAndFilename(path);
 
-	path = absolutePath(pathAndFilename.first) + "/";
+	path = absolute_path(pathAndFilename.first) + "/";
 	path += pathAndFilename.second;
 	return CubicleSoft::UTF8::Dir::Mkdir(path.c_str());
 }
 
-bool deleteDirectory(string path)
+bool delete_directory(string path)
 {
-	path = absolutePath(path);
+	path = absolute_path(path);
 	return CubicleSoft::UTF8::Dir::Rmdir(path.c_str(), true);
 }
 
-bool deleteFile(string path)
+bool delete_file(string path)
 {
-	path = absolutePath(path);
+	path = absolute_path(path);
 	return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
 
