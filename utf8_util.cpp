@@ -1,7 +1,7 @@
 // Cross-platform UTF-8 string conversion and lightweight parser.
 // (C) 2013 CubicleSoft.  All Rights Reserved.
 
-#include "utf8_util.h"
+#include "rdi_utf8_util.h"
 
 namespace CubicleSoft
 {

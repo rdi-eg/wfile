@@ -18,9 +18,10 @@ SOURCES += wfileio.cpp \
     utf8_util.cpp \
     utf8_file_dir.cpp
 
-HEADERS += wfileio.h \
-    utf8_util.h \
-    utf8_file_dir.h
+HEADERS += \
+    rdi_utf8_file_dir.h \
+    rdi_utf8_util.h \
+    rdi_wfileio.h
 
 unix {
     target.path = /usr/lib
