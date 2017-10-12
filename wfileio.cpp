@@ -14,7 +14,7 @@ using namespace std;
 namespace RDI
 {
 
-wstring readWFile(string filename)
+wstring readWFile(const string& filename)
 {
 	wifstream wif(filename.c_str());
 	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -23,7 +23,7 @@ wstring readWFile(string filename)
 	return wss.str();
 }
 
-bool writeWFile(string filename, wstring fileContent)
+bool writeWFile(const string& filename, const wstring& fileContent)
 {
 	wofstream wof(filename.c_str());
 	if(!wof.is_open())
@@ -33,7 +33,7 @@ bool writeWFile(string filename, wstring fileContent)
 	return true;
 }
 
-string readFile(string filename)
+string readFile(const string &filename)
 {
 	ifstream stream(filename.c_str());
 	stringstream ss;
@@ -41,7 +41,7 @@ string readFile(string filename)
 	return ss.str();
 }
 
-bool writeFile(string filename, string fileContent)
+bool writeFile(const string &filename, const string &fileContent)
 {
 	ofstream of(filename.c_str());
 	if(!of.is_open())
@@ -60,7 +60,7 @@ string getCurrentDirectory()
 	return path + "/";
 }
 
-vector<wstring> readLinesWFile(string filename)
+vector<wstring> readLinesWFile(const string &filename)
 {
 	wifstream wif(filename.c_str());
 	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -75,7 +75,7 @@ vector<wstring> readLinesWFile(string filename)
 	return lines;
 }
 
-bool writeLinesWFile(string filename, vector<wstring> linesToWrite)
+bool writeLinesWFile(const string &filename, const vector<wstring> &linesToWrite)
 {
 	wofstream wof(filename.c_str());
 	if(!wof.is_open())
@@ -88,7 +88,7 @@ bool writeLinesWFile(string filename, vector<wstring> linesToWrite)
 	return true;
 }
 
-vector<string> readLinesFile(string filename)
+vector<string> readLinesFile(const string &filename)
 {
 	ifstream stream(filename.c_str());
 	stringstream ss;
@@ -102,7 +102,7 @@ vector<string> readLinesFile(string filename)
 	return lines;
 }
 
-bool writeLinesFile(string filename, vector<string> linesToWrite)
+bool writeLinesFile(const string &filename, const vector<string> &linesToWrite)
 {
 	ofstream of(filename.c_str());
 	if(!of.is_open())
@@ -114,7 +114,7 @@ bool writeLinesFile(string filename, vector<string> linesToWrite)
 	return true;
 }
 
-vector<string> getDirectoryContent(string path)
+vector<string> getDirectoryContent(const string &path)
 {
 	DIR* dir = opendir (path.c_str());
 	struct dirent *ent;
@@ -136,7 +136,7 @@ vector<string> getDirectoryContent(string path)
 	return directoryContent;
 }
 
-bool appendToWFile(string filename, wstring content)
+bool appendToWFile(const string& filename, const wstring& content)
 {
 	wofstream wof;
 	wof.open(filename.c_str(), ios_base::app);
@@ -147,7 +147,7 @@ bool appendToWFile(string filename, wstring content)
 	return true;
 }
 
-bool appendToFile(string filename, string content)
+bool appendToFile(const string &filename, const string &content)
 {
 	ofstream of;
 	of.open(filename.c_str(), ios_base::app);
