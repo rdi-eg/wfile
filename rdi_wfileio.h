@@ -35,7 +35,7 @@ extern "C++"
 		bool write_file_lines(const std::string& filename, const std::vector<std::string>& linesToWrite);
 		bool delete_file(std::string path);
 		std::string absolute_path(std::string path);
-		std::string get_current_directory(); // returns the location of the binary ex "/home/rdi/bin"
+		std::string get_current_directory(); // returns the location of the binary executable ex: "/home/rdi/bin"
 		std::vector<std::string> get_directory_content(const std::string& path);
 		bool create_directory(std::string path);
 		bool delete_directory(std::string path);
