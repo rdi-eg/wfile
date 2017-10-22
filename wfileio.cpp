@@ -1,4 +1,4 @@
-#include "rdi_wfileio.h"
+﻿#include "rdi_wfileio.h"
 #include "utf8_file_dir.h"
 
 #include <sstream>
@@ -215,5 +215,24 @@ bool delete_file(string path)
 	path = absolute_path(path);
 	return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
+
+map<string , string> parse_config_file(const string& filename)
+{
+	vector<string> file_content = read_file_lines(filename);
+	map<string , string> map_content;
+
+	for(const auto &line : file_content)
+	{
+		size_t found;
+		if ((found = line.find("=")) != string::npos)
+		{
+			string key = line.substr(0 , found-1);
+			string value = line.substr(found+2 , string::npos);
+			map_content[key] = value;
+		}
+	}
+	return map_content;
+}
+
 
 } //namespace

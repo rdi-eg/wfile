@@ -18,6 +18,7 @@
 
 #include <string>
 #include <vector>
+#include<map>
 
 extern "C++"
 {
@@ -39,6 +40,7 @@ extern "C++"
 		std::vector<std::string> get_directory_content(const std::string& path);
 		bool create_directory(std::string path);
 		bool delete_directory(std::string path);
+		std::map<std::string , std::string> parse_config_file(const std::string& filename);
 	}
 } // namespace
 
