@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/rdi-eg/wFileIO.svg?branch=master)](https://travis-ci.org/rdi-eg/wFileIO)
 # wFileIO
 A little C++ lib that helps you do file operations with normal and wstrings.
 
