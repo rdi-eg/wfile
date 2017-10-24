@@ -1,0 +1,15 @@
+language: c++
+sudo: required
+dist: xenial
+
+before_install:
+  - sudo add-apt-repository ppa:beineri/opt-qt571-xenial
+  - sudo apt update -qq
+
+install:
+  - sudo apt-get -y install qt57-meta-minimal
+
+script:
+  - source /opt/qt55/bin/qt55-env.sh
+  - /opt/qt55/bin/qmake
+  - make
