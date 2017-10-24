@@ -62,6 +62,7 @@ string get_current_directory()
 
 vector<wstring> read_wfile_lines(const string &filename)
 {
+	std::setlocale(LC_ALL, "en_US.UTF-8");
 	wifstream wif(filename.c_str());
 	wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
 	wstringstream wss;
