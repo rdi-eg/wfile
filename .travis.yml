@@ -1,0 +1,19 @@
+language: c++
+compiler: g++
+sudo: required
+dist: trusty
+
+before_install:
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo apt update -qq
+
+install:
+  - sudo apt-get -y install qt55-meta-minimal g++-5
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+
+script:
+  - source /opt/qt55/bin/qt55-env.sh
+  - /opt/qt55/bin/qmake
+  - g++ --version
+  - make

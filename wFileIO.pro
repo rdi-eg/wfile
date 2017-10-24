@@ -8,7 +8,7 @@ QT       -= core gui
 
 TARGET = wFileIO
 TEMPLATE = lib
-CONFIG += staticlib c++11
+CONFIG += staticlib c++14
 
 QMAKE_CXXFLAGS += -fPIC
 
