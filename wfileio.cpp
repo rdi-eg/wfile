@@ -106,7 +106,7 @@ vector<string> read_file_lines(const string &filename)
 bool write_file_lines(const string &filename, const vector<string> &linesToWrite)
 {
 	ofstream of(filename.c_str());
-	if(!of.is_open())
+    if(!of.is_open())
 		return false;
 
 	for (string line : linesToWrite)
@@ -234,6 +234,28 @@ map<string , string> parse_config_file(const string& filename)
 	}
 	return map_content;
 }
+
+bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> &input_matrix)
+{
+    std::vector<std::string> content;
+
+    for(const auto& inner : input_matrix)
+    {
+        std::string line = "";
+        for(const auto& item : inner)
+        {
+            line += std::to_string(item);
+            line += " ";
+        }
+        content.push_back(line);
+    }
+
+    if(write_file_lines(file_name,content))
+        return true;
+
+    return false;
+}
+
 
 
 } //namespace
