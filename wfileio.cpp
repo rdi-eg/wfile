@@ -205,15 +205,13 @@ bool create_directory(string path)
 	return CubicleSoft::UTF8::Dir::Mkdir(path.c_str());
 }
 
-bool delete_directory(string path)
+bool delete_directory(const string& path)
 {
-	path = absolute_path(path);
 	return CubicleSoft::UTF8::Dir::Rmdir(path.c_str(), true);
 }
 
-bool delete_file(string path)
+bool delete_file(const string& path)
 {
-	path = absolute_path(path);
 	return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
 
@@ -250,12 +248,10 @@ bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> 
         content.push_back(line);
     }
 
-    if(write_file_lines(file_name,content))
+	if(write_file_lines(file_name, content))
         return true;
 
     return false;
 }
-
-
 
 } //namespace
