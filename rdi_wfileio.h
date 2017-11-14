@@ -41,7 +41,8 @@ extern "C++"
 		bool create_directory(std::string path);
 		bool delete_directory(std::string path);
 		std::map<std::string , std::string> parse_config_file(const std::string& filename);
-                bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> &input_matrix);
+        bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> &input_matrix);
+        bool file_exist(const std::string &file_name);
 	}
 } // namespace
 

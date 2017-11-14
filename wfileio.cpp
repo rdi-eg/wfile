@@ -174,8 +174,8 @@ vector<string> explode(string const & s, char delim)
 string absolute_path(string path)
 {
 	path = get_current_directory() + path;
-	unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
-	assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
+    unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
+    assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
 	return string(absolutePath.get());
 }
 
@@ -256,6 +256,10 @@ bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> 
     return false;
 }
 
+ bool file_exist(const string &file_name)
+ {
+     return CubicleSoft::UTF8::File::Exists(file_name.c_str());
+ }
 
 
 } //namespace
