@@ -1,4 +1,4 @@
-﻿#include "rdi_wfileio.h"
+﻿#include "rdi_wfile.h"
 #include "utf8_file_dir.h"
 
 #include <sstream>
@@ -171,9 +171,13 @@ vector<string> explode(string const & s, char delim)
 	return result;
 }
 
-string absolute_path(string path)
+string get_absolute_path(string path)
 {
-	path = get_current_directory() + path;
+	if (path.size() && path[0] != '/')
+	{
+		path = get_current_directory() + path;
+	}
+
     unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
     assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
 	return string(absolutePath.get());
@@ -198,10 +202,6 @@ pair<string, string> splitPathAndFilename(string path)
 
 bool create_directory(string path)
 {
-	pair<string, string> pathAndFilename = splitPathAndFilename(path);
-
-	path = absolute_path(pathAndFilename.first) + "/";
-	path += pathAndFilename.second;
 	return CubicleSoft::UTF8::Dir::Mkdir(path.c_str());
 }
 
