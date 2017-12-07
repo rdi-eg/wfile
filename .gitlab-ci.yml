@@ -1,0 +1,7 @@
+build:
+
+        stage : build
+        
+        script:
+          - qmake
+          - make -j $(nproc)
