@@ -251,14 +251,7 @@ bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> 
     //write content in file.
     write_file_lines(file_name, content);
 
-
-    std::vector<std::string> file_content =read_file_lines(file_name);
-
-
-    if(content == file_content)
-        return true;
-
-    return false;
+    return true;
 }
 
 bool file_exist(const string &file_name)
