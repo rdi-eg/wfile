@@ -1,8 +1,9 @@
-[![Build Status](https://travis-ci.org/rdi-eg/wFileIO.svg?branch=master)](https://travis-ci.org/rdi-eg/wFileIO)
-# wFileIO
+[![Build Status](https://travis-ci.org/rdi-eg/wfile.svg?branch=master)](https://travis-ci.org/rdi-eg/wfile)
+# wfile
 A little C++ lib that helps you do file operations with normal and wstrings.
 
-Based on the wonderful [Snippet Library](https://github.com/cubiclesoft/cross-platform-cpp) from CubicleSoft.
+* Based on the wonderful [Snippet Library](https://github.com/cubiclesoft/cross-platform-cpp) from CubicleSoft.
+* Uses [boost::filesystem](http://www.boost.org/doc/libs/1_39_0/libs/filesystem/doc/index.htm).
 
 We faced some issues when dealing with non-latin characters, so we created this library to help us with file I/O operations.
 
