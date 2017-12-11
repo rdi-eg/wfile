@@ -280,10 +280,6 @@ std::string extract_filename(std::string path)
 
 	boost::filesystem::path boost_path(path);
 	return boost_path.filename().string();
-    //write content in file.
-    write_file_lines(file_name, content);
-
-    return true;
 }
 
 std::string extract_filename_without_extension(std::string path)
