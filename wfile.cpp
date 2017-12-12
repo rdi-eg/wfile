@@ -17,7 +17,7 @@ namespace RDI
 
 wstring read_wfile(const string& filename)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     wifstream wif(filename.c_str());
@@ -39,7 +39,7 @@ bool write_wfile(const string& filename, const wstring& fileContent)
 
 string read_file(const string &filename)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     ifstream stream(filename.c_str());
@@ -69,7 +69,7 @@ string get_current_directory()
 
 vector<wstring> read_wfile_lines(const string &filename)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     std::setlocale(LC_ALL, "en_US.UTF-8");
@@ -101,7 +101,7 @@ bool write_wfile_lines(const string &filename, const vector<wstring> &linesToWri
 
 vector<string> read_file_lines(const string &filename)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     ifstream stream(filename.c_str());
@@ -118,9 +118,9 @@ vector<string> read_file_lines(const string &filename)
 
 bool write_file_lines(const string &filename, const vector<string> &linesToWrite)
 {
-	ofstream of(filename.c_str());
-	if(!of.is_open())
-		return false;
+    ofstream of(filename.c_str());
+    if(!of.is_open())
+        return false;
 
     for (string line : linesToWrite)
         of << line << endl;
@@ -152,7 +152,7 @@ vector<string> get_directory_content(const string &path)
 
 bool append_to_wfile(const string& filename, const wstring& content)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     wofstream wof;
@@ -166,7 +166,7 @@ bool append_to_wfile(const string& filename, const wstring& content)
 
 bool append_to_file(const string &filename, const string &content)
 {
-    if(!file_exist(filename))
+    if(!file_exists(filename))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     ofstream of;
@@ -197,9 +197,9 @@ string get_absolute_path(string path)
         path = get_current_directory() + path;
     }
 
-	unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
-	assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
-	return string(absolutePath.get());
+    unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
+    assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
+    return string(absolutePath.get());
 }
 
 pair<string, string> splitPathAndFilename(string path)
@@ -231,7 +231,7 @@ bool delete_directory(const string& path)
 
 bool delete_file(const string& path)
 {
-    if(!file_exist(path))
+    if(!file_exists(path))
         throw std::runtime_error("!!!ERROR!!! File doesn't exist");
 
     return CubicleSoft::UTF8::File::Delete(path.c_str());
@@ -257,61 +257,61 @@ map<string , string> parse_config_file(const string& filename)
 
 bool dump_matrix(const std::string &file_name, std::vector<std::vector<float>> &input_matrix)
 {
-	std::vector<std::string> content;
+    std::vector<std::string> content;
 
-	for(const auto& inner : input_matrix)
-	{
-		std::string line = "";
-		for(const auto& item : inner)
-		{
-			line += std::to_string(item);
-			line += " ";
-		}
-		content.push_back(line);
-	}
+    for(const auto& inner : input_matrix)
+    {
+        std::string line = "";
+        for(const auto& item : inner)
+        {
+            line += std::to_string(item);
+            line += " ";
+        }
+        content.push_back(line);
+    }
 
-	if(write_file_lines(file_name, content))
-		return true;
+    if(write_file_lines(file_name, content))
+        return true;
 
-	return false;
+    return false;
 }
 
 bool file_exists(const string &file_name)
 {
-	return CubicleSoft::UTF8::File::Exists(file_name.c_str());
+    return CubicleSoft::UTF8::File::Exists(file_name.c_str());
 }
 
 bool is_directory(const std::string& path)
 {
-	CubicleSoft::UTF8::Dir dir;
-	if (dir.Open(path.c_str()))
-	{
-		return true;
-	}
+    CubicleSoft::UTF8::Dir dir;
+    if (dir.Open(path.c_str()))
+    {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 std::string extract_filename(std::string path)
 {
-	if (is_directory(path))
-	{
-		throw std::runtime_error("This is a directory.");
-	}
+    if (is_directory(path))
+    {
+        throw std::runtime_error("This is a directory.");
+    }
 
-	boost::filesystem::path boost_path(path);
-	return boost_path.filename().string();
+    boost::filesystem::path boost_path(path);
+    return boost_path.filename().string();
 }
 
 std::string extract_filename_without_extension(std::string path)
 {
-	if (is_directory(path))
-	{
-		throw std::runtime_error("This is a directory.");
-	}
+    if (is_directory(path))
+    {
+        throw std::runtime_error("This is a directory.");
+    }
 
-	boost::filesystem::path boost_path(path);
-	return boost_path.stem().string();
+    boost::filesystem::path boost_path(path);
+    return boost_path.stem().string();
 }
 
 } //namespace
