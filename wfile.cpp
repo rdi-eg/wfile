@@ -16,6 +16,9 @@ namespace RDI
 
 wstring read_wfile(const string& filename)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     wifstream wif(filename.c_str());
     wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
     wstringstream wss;
@@ -35,6 +38,9 @@ bool write_wfile(const string& filename, const wstring& fileContent)
 
 string read_file(const string &filename)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     ifstream stream(filename.c_str());
     stringstream ss;
     ss << stream.rdbuf();
@@ -62,6 +68,9 @@ string get_current_directory()
 
 vector<wstring> read_wfile_lines(const string &filename)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     std::setlocale(LC_ALL, "en_US.UTF-8");
     wifstream wif(filename.c_str());
     wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -91,6 +100,9 @@ bool write_wfile_lines(const string &filename, const vector<wstring> &linesToWri
 
 vector<string> read_file_lines(const string &filename)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     ifstream stream(filename.c_str());
     stringstream ss;
     ss << stream.rdbuf();
@@ -139,6 +151,9 @@ vector<string> get_directory_content(const string &path)
 
 bool append_to_wfile(const string& filename, const wstring& content)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     wofstream wof;
     wof.open(filename.c_str(), ios_base::app);
     if(!wof.is_open())
@@ -150,6 +165,9 @@ bool append_to_wfile(const string& filename, const wstring& content)
 
 bool append_to_file(const string &filename, const string &content)
 {
+    if(!file_exist(filename))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     ofstream of;
     of.open(filename.c_str(), ios_base::app);
     if(!of.is_open())
@@ -212,6 +230,9 @@ bool delete_directory(const string& path)
 
 bool delete_file(const string& path)
 {
+    if(!file_exist(path))
+        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+
     return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
 
