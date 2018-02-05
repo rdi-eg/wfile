@@ -44,6 +44,7 @@ extern "C++"
         bool dump_matrix(const std::string &file_name , std::vector<std::vector<float>> &input_matrix);
         bool file_exists(const std::string &file_name);
 		bool is_directory(const std::string& path);
+		std::string extract_path_from_filename(std::string filename);
 		std::string extract_filename(std::string path);
 		std::string extract_filename_without_extension(std::string path);
 	} // namespace RDI

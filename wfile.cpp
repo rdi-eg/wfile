@@ -292,6 +292,12 @@ bool is_directory(const std::string& path)
     return false;
 }
 
+std::string extract_path_from_filename(std::string filename)
+{
+	boost::filesystem::path boost_path(filename);
+	return boost_path.parent_path().string();
+}
+
 std::string extract_filename(std::string path)
 {
     if (is_directory(path))
