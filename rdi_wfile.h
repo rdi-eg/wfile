@@ -46,7 +46,7 @@ extern "C++"
 		bool is_directory(const std::string& path);
 		std::string extract_filename(std::string path);
 		std::string extract_filename_without_extension(std::string path);
-	}
-} // namespace
+	} // namespace RDI
+}
 
 #endif // RDI_WFILEIO_H
