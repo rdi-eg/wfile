@@ -152,8 +152,10 @@ vector<string> get_directory_content(const string &path)
 
 bool append_to_wfile(const string& filename, const wstring& content)
 {
-    if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+	if(!file_exists(filename))
+	{
+		write_wfile(filename, L"");
+	}
 
     wofstream wof;
     wof.open(filename.c_str(), ios_base::app);
@@ -166,15 +168,21 @@ bool append_to_wfile(const string& filename, const wstring& content)
 
 bool append_to_file(const string &filename, const string &content)
 {
-    if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+	if(!file_exists(filename))
+	{
+		write_file(filename, "");
+	}
 
     ofstream of;
     of.open(filename.c_str(), ios_base::app);
+
     if(!of.is_open())
-        return false;
-    of << content;
-    return true;
+	{
+		return false;
+	}
+
+	of << content;
+	return true;
 }
 
 vector<string> explode(string const & s, char delim)
