@@ -159,10 +159,14 @@ bool append_to_wfile(const string& filename, const wstring& content)
 
     wofstream wof;
     wof.open(filename.c_str(), ios_base::app);
-    if(!wof.is_open())
+
+	if(!wof.is_open())
+	{
         return false;
-    wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
-    wof << content;
+	}
+
+	wof.imbue(locale(wof.getloc(), new codecvt_utf8<wchar_t>));
+	wof << content << '\n';
     return true;
 }
 
@@ -181,7 +185,7 @@ bool append_to_file(const string &filename, const string &content)
 		return false;
 	}
 
-	of << content;
+	of << content << '\n';
 	return true;
 }
 
