@@ -47,6 +47,7 @@ extern "C++"
 		std::string extract_path_from_filename(std::string filename);
 		std::string extract_filename(std::string path);
 		std::string extract_filename_without_extension(std::string path);
+		std::string extract_extenstion_from_path(const std::string& filename);
 	} // namespace RDI
 }
 

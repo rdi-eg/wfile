@@ -332,4 +332,10 @@ std::string extract_filename_without_extension(std::string path)
     return boost_path.stem().string();
 }
 
+std::string extract_extenstion_from_path(const std::string& filename)
+{
+	size_t lastindex = filename.find_last_of(".");
+	return filename.substr(lastindex, filename.size() - lastindex-1);
+}
+
 } //namespace
