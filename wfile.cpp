@@ -18,7 +18,9 @@ namespace RDI
 wstring read_wfile(const string& filename)
 {
     if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+    {
+        throw std::runtime_error("File doesn't exist!");
+    }
 
     wifstream wif(filename.c_str());
     wif.imbue(locale(wif.getloc(), new codecvt_utf8<wchar_t>));
@@ -40,7 +42,9 @@ bool write_wfile(const string& filename, const wstring& fileContent)
 string read_file(const string &filename)
 {
     if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+    {
+        throw std::runtime_error("File doesn't exist!");
+    }
 
     ifstream stream(filename.c_str());
     stringstream ss;
@@ -70,7 +74,9 @@ string get_current_directory()
 vector<wstring> read_wfile_lines(const string &filename)
 {
     if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+    {
+        throw std::runtime_error("File doesn't exist!");
+    }
 
     std::setlocale(LC_ALL, "en_US.UTF-8");
     wifstream wif(filename.c_str());
@@ -244,7 +250,9 @@ bool delete_directory(const string& path)
 bool delete_file(const string& path)
 {
     if(!file_exists(path))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+    {
+        return false;
+    }
 
     return CubicleSoft::UTF8::File::Delete(path.c_str());
 }
