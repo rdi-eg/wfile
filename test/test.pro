@@ -23,3 +23,6 @@ INCLUDEPATH += $$PWD/../../include
 unix:!macx: LIBS += -lwfile              \
                     -lboost_filesystem	 \
 					-lboost_system
+
+HEADERS += \
+    catch.hpp

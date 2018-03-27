@@ -21,5 +21,4 @@ HEADERS += \
     utf8_file_dir.h \
     utf8_util.h \
     rdi_wfile.h \
-    catch.hpp \
     windows_dirent.h
