@@ -14,6 +14,11 @@ install:
 
 script:
   - source /opt/qt55/bin/qt55-env.sh
+  - cd lib/
   - /opt/qt55/bin/qmake
   - g++ --version
   - make
+  - cp *.h /usr/include && cd ../test
+  - /opt/qt55/bin/qmake
+  - make
+  - ./test
