@@ -6,7 +6,7 @@ dist: trusty
 before_install:
   - sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty
   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-  - sudo apt update -qq
+  - sudo apt-get update -qq
 
 install:
   - sudo apt-get -y install qt55-meta-minimal g++-5 libboost-dev
