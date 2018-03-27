@@ -18,7 +18,7 @@ script:
   - /opt/qt55/bin/qmake
   - g++ --version
   - make
-  - cp *.h /usr/include && cd ../test
+  - sudo cp *.h /usr/include && cd ../test
   - /opt/qt55/bin/qmake
   - make
   - ./test
