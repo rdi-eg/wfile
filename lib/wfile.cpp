@@ -19,7 +19,7 @@ wstring read_wfile(const string& filename)
 {
     if(!file_exists(filename))
     {
-        throw std::runtime_error("File doesn't exist!");
+		throw std::runtime_error(filename + " file doesn't exist!");
     }
 
     wifstream wif(filename.c_str());
@@ -43,7 +43,7 @@ string read_file(const string &filename)
 {
     if(!file_exists(filename))
     {
-        throw std::runtime_error("File doesn't exist!");
+		throw std::runtime_error(filename + " file doesn't exist!");
     }
 
     ifstream stream(filename.c_str());
@@ -75,7 +75,7 @@ vector<wstring> read_wfile_lines(const string &filename)
 {
     if(!file_exists(filename))
     {
-        throw std::runtime_error("File doesn't exist!");
+		throw std::runtime_error(filename + " file doesn't exist!");
     }
 
     std::setlocale(LC_ALL, "en_US.UTF-8");
@@ -108,7 +108,7 @@ bool write_wfile_lines(const string &filename, const vector<wstring> &linesToWri
 vector<string> read_file_lines(const string &filename)
 {
     if(!file_exists(filename))
-        throw std::runtime_error("!!!ERROR!!! File doesn't exist");
+		throw std::runtime_error(filename + " file does not exist.");
 
     ifstream stream(filename.c_str());
     stringstream ss;
@@ -322,7 +322,7 @@ std::string extract_filename(std::string path)
 {
     if (is_directory(path))
     {
-        throw std::runtime_error("This is a directory.");
+		throw std::runtime_error(path + " is a directory.");
     }
 
     boost::filesystem::path boost_path(path);
@@ -333,7 +333,7 @@ std::string extract_filename_without_extension(std::string path)
 {
     if (is_directory(path))
     {
-        throw std::runtime_error("This is a directory.");
+		throw std::runtime_error(path + " is a directory.");
     }
 
     boost::filesystem::path boost_path(path);
