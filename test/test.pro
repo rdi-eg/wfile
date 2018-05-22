@@ -20,9 +20,10 @@ SOURCES += \
 
 INCLUDEPATH += $$PWD/../../include
 
-unix:!macx: LIBS += -lwfile              \
+unix:!macx: LIBS += -L$$OUT_PWD/../lib   \
+                    -lwfile              \
                     -lboost_filesystem	 \
-					-lboost_system
+                    -lboost_system
 
 HEADERS += \
     catch.hpp

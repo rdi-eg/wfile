@@ -1354,7 +1354,7 @@ namespace CubicleSoft
 		bool File::GetPlatformFilename(char *Result, size_t ResultSize, const char *Filename, bool)
 		{
 			// Check for invalid characters in the path/filename.  Replace '\' with '/'.
-			char TempCP;
+			unsigned char TempCP;
 			size_t x, y = strlen(Filename);
 			if (y + 1 > ResultSize)  return false;
 			Util::ConvertToUTF8(Filename, y + 1, sizeof(char), (std::uint8_t *)Result, ResultSize);

@@ -103,7 +103,7 @@ TEST_CASE( "Path Config File")
 
 TEST_CASE( "Get Absolute Path" )
 {
-	CHECK( get_absolute_path("../../wfile_tests/")[0] == '/' );
+	CHECK( get_absolute_path(tests_path)[0] == '/' );
     CHECK( get_absolute_path("/var") == "/var" );
 }
 

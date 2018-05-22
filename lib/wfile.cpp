@@ -5,7 +5,6 @@
 #include <fstream>
 #include <codecvt>
 #include <utility>
-#include <assert.h>
 #include <algorithm>
 #include <memory>
 #include <boost/filesystem.hpp>
@@ -216,7 +215,12 @@ string get_absolute_path(string path)
     }
 
     unique_ptr<char[]> absolutePath = unique_ptr<char[]>(new char[8129]);
-    assert(CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()));
+
+	if(!CubicleSoft::UTF8::File::Realpath(absolutePath.get(), 8129, path.c_str()))
+	{
+		throw std::runtime_error("Can't find path: " + path);
+	}
+
     return string(absolutePath.get());
 }
 
