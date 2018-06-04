@@ -10,7 +10,7 @@ TARGET = wfile
 TEMPLATE = lib
 CONFIG += staticlib c++11
 
-QMAKE_CXXFLAGS += -fPIC
+QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
 
 SOURCES += \
     utf8_util.cpp \
