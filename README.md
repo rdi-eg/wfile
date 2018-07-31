@@ -1,3 +1,5 @@
+**This repo has been moved to [Gitlab](https://gitlab.com/rdi-eg/wfile) and is no longer maintained here.**
+
 [![Build Status](https://travis-ci.org/rdi-eg/wfile.svg?branch=master)](https://travis-ci.org/rdi-eg/wfile)
 # wfile
 A little C++ lib that helps you do file operations with normal and wstrings.
